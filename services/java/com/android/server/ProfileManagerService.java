@@ -86,6 +86,7 @@ public class ProfileManagerService extends IProfileManager.Stub {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
+
             if (action.equals(Intent.ACTION_LOCALE_CHANGED)) {
                 persistIfDirty();
                 initialize();

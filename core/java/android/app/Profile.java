@@ -17,10 +17,12 @@
 package android.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Parcel;
 import android.os.ParcelUuid;
 import android.os.Parcelable;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -346,6 +348,7 @@ public final class Profile implements Parcelable, Comparable {
         dest.writeParcelable(mAirplaneMode, flags);
         dest.writeInt(mScreenLockMode);
         dest.writeMap(mTriggers);
+        dest.writeParcelableArray(vibrators.values().toArray(new Parcelable[vibrators.size()]), flags);
     }
 
     /** @hide */
@@ -379,6 +382,10 @@ public final class Profile implements Parcelable, Comparable {
         mAirplaneMode = (AirplaneModeSettings) in.readParcelable(null);
         mScreenLockMode = in.readInt();
         in.readMap(mTriggers, null);
+        for (Parcelable parcel : in.readParcelableArray(null)) {
+            VibratorSettings vibrator = (VibratorSettings) parcel;
+            vibrators.put(vibrator.getVibratorId(), vibrator);
+        }
     }
 
     public String getName() {
@@ -500,7 +507,12 @@ public final class Profile implements Parcelable, Comparable {
         }
         if (mAirplaneMode.isDirty()) {
             return true;
-        }
+	}
+        for (VibratorSettings vibrator : vibrators.values()) {
+            if (vibrator.isDirty()) {
+                return true;
+            }
+	}
         return false;
     }
 
@@ -559,6 +571,9 @@ public final class Profile implements Parcelable, Comparable {
             builder.append("</triggers>\n");
         }
 
+        for (VibratorSettings vs : vibrators.values()) {
+            vs.getXmlString(builder, context);
+        }
         builder.append("</profile>\n");
         mDirty = false;
     }
@@ -676,6 +691,10 @@ public final class Profile implements Parcelable, Comparable {
                 }
                 if (name.equals("triggers")) {
                     readTriggersFromXml(xpp, context, profile);
+		}
+                if (name.equals("vibratorDescriptor")) {
+                    VibratorSettings vs = VibratorSettings.fromXml(xpp, context);
+                    profile.setVibratorSettings(vs);
                 }
             }
             event = xpp.next();
@@ -706,6 +725,25 @@ public final class Profile implements Parcelable, Comparable {
         mSilentMode.processOverride(context);
         // Set airplane mode
         mAirplaneMode.processOverride(context);
+        // Set vibrators
+        for (VibratorSettings vs : vibrators.values()) {
+            if (vs.isOverride()) {
+                vs.processOverride(context);
+            }
+        }
+    }
+
+    private void doSelectAirplaneMode(Context context) {
+        if (getAirplaneMode() != AirplaneMode.DEFAULT) {
+            int current = Settings.System.getInt(context.getContentResolver(), Settings.System.AIRPLANE_MODE_ON, 0);
+            int target = getAirplaneMode();
+            if (current == 1 && target == AirplaneMode.DISABLE || current == 0 && target == AirplaneMode.ENABLE) {
+                Settings.System.putInt(context.getContentResolver(), Settings.System.AIRPLANE_MODE_ON, 1 - current);
+                Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+                intent.putExtra("state", target != AirplaneMode.DISABLE);
+                context.sendBroadcast(intent);
+            }
+        }
     }
 
     /** @hide */
@@ -722,6 +760,22 @@ public final class Profile implements Parcelable, Comparable {
     /** @hide */
     public Collection<StreamSettings> getStreamSettings(){
         return streams.values();
+    }
+
+    /** @hide */
+    public VibratorSettings getSettingsForVibrator(int vibratorId) {
+        return vibrators.get(vibratorId);
+    }
+
+    /** @hide */
+    public void setVibratorSettings(VibratorSettings descriptor) {
+        vibrators.put(descriptor.getVibratorId(), descriptor);
+        mDirty = true;
+    }
+
+    /** @hide */
+    public Collection<VibratorSettings> getVibratorSettings() {
+        return vibrators.values();
     }
 
     /** @hide */
