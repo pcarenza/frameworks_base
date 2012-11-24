@@ -133,6 +133,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private Action mSilentModeAction;
     private ToggleAction mAirplaneModeOn;
     private NavBarAction mNavBarHideToggle;
+    private ToggleAction mExpandDesktopModeOn;
 
     private MyAdapter mAdapter;
 
@@ -258,7 +259,28 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         mEnableTorchToggle = Settings.System.getBoolean(mContext.getContentResolver(),
                 Settings.System.POWER_DIALOG_SHOW_TORCH_TOGGLE, false);
 
-        mEnableNavBarHideToggle= Settings.System.getBoolean(mContext.getContentResolver(),
+	mExpandDesktopModeOn = new ToggleAction(
+            R.drawable.ic_lock_expanded_desktop,
+            R.drawable.ic_lock_expanded_desktop,
+            R.string.global_actions_toggle_expanded_desktop_mode,
+            R.string.global_actions_expanded_desktop_mode_on_status,
+            R.string.global_actions_expanded_desktop_mode_off_status) {
+
+            void onToggle(boolean on) {
+                changeExpandDesktopModeSystemSetting(on);
+            }
+
+            public boolean showDuringKeyguard() {
+                return false;
+            }
+
+            public boolean showBeforeProvisioning() {
+                return false;
+            }
+        };
+        onExpandDesktopModeChanged();
+
+		mEnableNavBarHideToggle= Settings.System.getBoolean(mContext.getContentResolver(),
                 Settings.System.POWER_DIALOG_SHOW_NAVBAR_HIDE, false);
         mNavBarHideToggle = new NavBarAction(mHandler);
 
@@ -398,10 +420,18 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                         return true;
                     }
 
-                public boolean showBeforeProvisioning() {
-                    return true;
-                }
-            });
+                    public boolean showBeforeProvisioning() {
+                        return true;
+                    }
+                });
+        }
+        
+        // next: expanded desktop toggle
+        // only shown if enabled, disabled by default
+        if(Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 0) == 1){
+            mItems.add(mExpandDesktopModeOn);
+        }
 
         // next: airplane mode
         if (Settings.System.getInt(mContext.getContentResolver(),
@@ -1414,6 +1444,14 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         mAirplaneModeOn.updateState(mAirplaneState);
     }
 
+	private void onExpandDesktopModeChanged() {
+        boolean expandDesktopModeOn = Settings.System.getInt(
+                mContext.getContentResolver(),
+                Settings.System.EXPANDED_DESKTOP_STATE,
+                0) == 1;
+        mExpandDesktopModeOn.updateState(expandDesktopModeOn ? ToggleAction.State.On : ToggleAction.State.Off);
+    }
+
     /**
      * Change the airplane mode system setting
      */
@@ -1429,6 +1467,16 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         if (!mHasTelephony) {
             mAirplaneState = on ? ToggleAction.State.On : ToggleAction.State.Off;
         }
+    }
+    
+    /**
+     * Change the expand desktop mode system setting
+     */
+    private void changeExpandDesktopModeSystemSetting(boolean on) {
+        Settings.System.putInt(
+                mContext.getContentResolver(),
+                Settings.System.EXPANDED_DESKTOP_STATE,
+                on ? 1 : 0);
     }
 
     private static final class GlobalActionsDialog extends Dialog implements DialogInterface {

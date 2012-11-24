@@ -4280,5 +4280,12 @@
 
     <!-- label for item that opens the profile choosing dialog -->
     <string name="global_action_choose_profile">Profile</string>
+    
+    <!-- label for item that toggles expand desktop mode -->
+    <string name="global_actions_toggle_expanded_desktop_mode">Expanded desktop</string>
+    <!-- status message in phone options dialog for when expand desktop mode is on -->
+    <string name="global_actions_expanded_desktop_mode_on_status">Enabled</string>
+    <!-- status message in phone options dialog for when expand desktop mode is off -->
+    <string name="global_actions_expanded_desktop_mode_off_status">Disabled</string>
 
 </resources>
