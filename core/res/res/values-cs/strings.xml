@@ -1566,4 +1566,7 @@
     <string name="aerr_revoked_application">Aplikace <xliff:g id="application">%1$s</xliff:g> (proces <xliff:g id="process">%2$s</xliff:g>) byla neočekávaně ukončena.\nPOZOR!\nTato aplikace má jedno nebo více odmítnutých oprávnění, což může způsobovat problémy. Je třeba povlit oprávnění a zkusit znovu.</string>
     <string name="aerr_revoked_process">Proces <xliff:g id="process">%1$s</xliff:g> byl neočekávaně ukončen.\nPOZOR!\nTento proces má jedno nebo více odmitnutých oprávnění, což může způsobovat problémy. Je třeba povolit oprávnění a zkusit znovu.</string>
     <string name="reset_perms">Obnovit oprávnění</string>
+    <string name="lockscreen_always_battery">Vybíjení, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <string name="lockscreen_always_low_battery">Připojte dobíjecí zařízení, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <string name="global_actions_toggle_navbar_hide">Ovládání navigační a stavové lišty</string>
 </resources>

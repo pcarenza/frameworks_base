@@ -13,7 +13,7 @@ public class StatusbarToggle extends StatefulToggle {
     SettingsObserver mObserver = null;
 
     @Override
-    public void init(Context c, int style) {
+    protected void init(Context c, int style) {
         super.init(c, style);
 
         mObserver = new SettingsObserver(mHandler);
