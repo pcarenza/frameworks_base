@@ -3593,10 +3593,17 @@ public final class Settings {
         };
 
          /**
-         * Statusbar State
+         * Whether Expanded desktop is currently running or not
          * @hide
          */
         public static final String EXPANDED_DESKTOP_STATE = "expanded_desktop_state";
+        
+        /**
+         * Expanded desktop mode
+         * 0 = none, 1 = hide only navbar, 2 = hide only statusbar, 3 = hide both
+         * @hide
+         */
+        public static final String EXPANDED_DESKTOP_MODE = "expanded_desktop_mode";
 
         /**
          *
