@@ -49,7 +49,7 @@ import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RadioButton;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -74,8 +74,8 @@ public class ResolverActivity extends AlertActivity implements AdapterView.OnIte
     private boolean mAlwaysUseOption;
     private boolean mShowExtended;
     private GridView mGrid;
-    private RadioButton mAlwaysButton;
-    private RadioButton mOnceButton;
+    private Button mAlwaysButton;
+    private Button mOnceButton;
     private CheckBox mAlwaysCheckBox;
     private int mIconDpi;
     private int mIconSize;
