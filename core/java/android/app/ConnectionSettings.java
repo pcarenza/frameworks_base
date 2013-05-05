@@ -168,6 +168,20 @@ public final class ConnectionSettings implements Parcelable {
                     }
                 }
                 break;
+            case PROFILE_CONNECTION_NFC:
+                if (nfcAdapter != null) {
+                    int adapterState = nfcAdapter.getAdapterState();
+                    currentState = (adapterState == NfcAdapter.STATE_ON ||
+                            adapterState == NfcAdapter.STATE_TURNING_ON);
+                    if (currentState != forcedState) {
+                        if (forcedState) {
+                            nfcAdapter.enable();
+                        } else if (!forcedState && adapterState != NfcAdapter.STATE_TURNING_OFF) {
+                            nfcAdapter.disable();
+                        }
+                    }
+                }
+                break;
         }
     }
 
