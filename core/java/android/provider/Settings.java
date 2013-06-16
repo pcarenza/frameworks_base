@@ -2715,7 +2715,7 @@ public final class Settings {
          */
         public static final String UI_FORCE_OVERFLOW_BUTTON = "ui_force_overflow_button";
 
- 	/**
+        /**
          * HALO, should default to 0 (no, do not show)
          * @hide
          */
