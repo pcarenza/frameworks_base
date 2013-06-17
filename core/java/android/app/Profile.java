@@ -563,6 +563,9 @@ public final class Profile implements Parcelable, Comparable {
         for (ConnectionSettings cs : connections.values()) {
             cs.getXmlString(builder, context);
         }
+        for (VibratorSettings vs : vibrators.values()) {
+            vs.getXmlString(builder, context);
+        }
         if (!mTriggers.isEmpty()) {
             builder.append("<triggers>\n");
             for (ProfileTrigger trigger : mTriggers.values()) {
@@ -695,6 +698,9 @@ public final class Profile implements Parcelable, Comparable {
                 if (name.equals("vibratorDescriptor")) {
                     VibratorSettings vs = VibratorSettings.fromXml(xpp, context);
                     profile.setVibratorSettings(vs);
+		}
+                if (name.equals("triggers")) {
+                    readTriggersFromXml(xpp, context, profile);
                 }
             }
             event = xpp.next();
