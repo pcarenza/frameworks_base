@@ -556,12 +556,7 @@ class ContextImpl extends Context {
                     return new IrdaManager(service);
                 }});
                     
-        registerService(PROFILE_SERVICE, new ServiceFetcher() {
-                public Object createService(ContextImpl ctx) {
-                    final Context outerContext = ctx.getOuterContext();
-                    return new ProfileManager (outerContext, ctx.mMainThread.getHandler());
-               }});
-    }
+            }
 
     static ContextImpl getImpl(Context context) {
         Context nextContext;
