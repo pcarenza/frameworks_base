@@ -3952,12 +3952,6 @@ public final class Settings {
         
 
         /**
-         * Show the pending notification counts as overlays on the status bar
-         * @hide
-         */
-        public static final String SYSTEM_PROFILES_ENABLED = "system_profiles_enabled";
-
-        /**
          * Whether the power menu reboot menu is enabled
          * @hide
          */
@@ -3992,12 +3986,6 @@ public final class Settings {
          * @hide
          */
         public static final String POWER_MENU_SILENT_ENABLED = "power_menu_silent_enabled";
-
-        /**
-         * Show the pending notification counts as overlays on the status bar
-         * @hide
-         */
-        public static final String SYSTEM_PROFILES_ENABLED = "system_profiles_enabled";
 
         /**	
          * Allows to show the background activity back the lockscreen
