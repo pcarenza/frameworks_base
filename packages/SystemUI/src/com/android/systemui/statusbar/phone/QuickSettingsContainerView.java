@@ -156,7 +156,7 @@ public class QuickSettingsContainerView extends FrameLayout {
             }
         }
     }
-
+    
     public void setColumnCount(int num) {
         mNumColumns = num;
     }

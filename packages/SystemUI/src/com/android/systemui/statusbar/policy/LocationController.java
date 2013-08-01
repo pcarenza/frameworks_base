@@ -159,4 +159,3 @@ public class LocationController extends BroadcastReceiver {
         }
     }
 }
-

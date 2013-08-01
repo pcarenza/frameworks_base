@@ -2612,6 +2612,46 @@ public final class Settings {
          * in statusbar
          */
         public static final String STATUS_BAR_CIRCLE_BATTERY_RESET = "status_bar_circle_battery_reset";
+        
+        /**
+         * enabled and order of quick toggles
+         * 
+         * @hide
+         */
+        public static final String QUICK_TOGGLES = "quick_toggles";
+
+        /**
+         * number of tiles per row in quick settings
+         *
+         * @hide
+         */
+        public static final String QUICK_TOGGLES_PER_ROW = "quick_toggles_per_row";
+        
+        /**
+         * @hide
+         */
+         public static final String TOGGLES_STYLE = "toggls_style";
+         
+         /**
+         * enable and disable fast toggle in settings
+         *
+         * @hide
+         */
+        public static final String FAST_TOGGLE = "fast_toggle";
+
+        /**
+         * enable and disable fast toggle in settings
+         *
+         * @hide
+         */
+        public static final String CHOOSE_FASTTOGGLE_SIDE = "choose_fasttoggle_side";
+        
+        /**
+         * enable and disable shade collapse on click
+         *
+         * @hide
+         */
+        public static final String SHADE_COLLAPSE_ALL = "shade_collapse_all";
 
         /**
          * Control the display of the action overflow button within app UI.
@@ -3028,18 +3068,6 @@ public final class Settings {
         /**
          * Statusbar toggle for quick settings
          * &hide
-         */
-        public static final String STATUSBAR_QUICK_TOGGLE = "statusbar_quick_toggle";
-
-        /**
-         * Used as a flag to determine if we have statusbar hidden
-         * @hide
-         */
-        public static final String STATUSBAR_HIDDEN = "statusbar_hidden";
-        
-        /**
-         * Statusbar toggle for quick settings
-         * @hide
          */
         public static final String STATUSBAR_QUICK_TOGGLE = "statusbar_quick_toggle";
 
@@ -3761,20 +3789,6 @@ public final class Settings {
         };
 
         /**
-         * enabled and order of quick toggles
-         * 
-         * @hide
-         */
-        public static final String QUICK_TOGGLES = "quick_toggles";
-
-        /**
-         * number of tiles per row in quick settings
-         *
-         * @hide
-         */
-        public static final String QUICK_TOGGLES_PER_ROW = "quick_toggles_per_row";
-
-        /**
          * favorite contact for quick settings
          *
          * @hide
@@ -3782,32 +3796,11 @@ public final class Settings {
         public static final String QUICK_TOGGLE_FAV_CONTACT = "quick_toggle_fav_contact";
 
         /**
-         * enable and disable shade collapse on click
-         *
-         * @hide
-         */
-        public static final String SHADE_COLLAPSE_ALL = "shade_collapse_all";
-
-        /**
          * enable vibrate on toggle click
          *
          * @hid
          */
         public static final String QUICK_TOGGLE_VIBRATE = "quick_toggle_vibrate";
-
-        /**
-         * enable and disable fast toggle in settings
-         *
-         * @hide
-         */
-        public static final String FAST_TOGGLE = "fast_toggle";
-
-        /**
-         * enable and disable fast toggle in settings
-         *
-         * @hide
-         */
-        public static final String CHOOSE_FASTTOGGLE_SIDE = "choose_fasttoggle_side";
 
         /**
          * Whether electronic beam animation is enabled or not
@@ -4478,15 +4471,6 @@ public final class Settings {
          * @hide
          */
         public static final String NOTIFICATION_SHORTCUTS_HIDE_CARRIER = "notification_shortcuts_hide_carrier";
-
-        /**
-         * 0 == QuickSettings Tile
-         * 1 == Toggle Switch (Not implemented Yet)
-         * 2 == Traditional
-         * 3 == Traditional (Scrolling)
-         * @hide
-         */
-        public static final String TOGGLES_STYLE = "toggls_style";
 
         /**
          * Boolean value. Whether to show the 4G icon when on LTE.

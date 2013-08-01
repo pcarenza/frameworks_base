@@ -6,7 +6,6 @@ import android.content.Context;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
-import android.net.wimax.WimaxHelper;
 import android.nfc.NfcAdapter;
 import android.os.Parcel;
 import android.os.Parcelable;
