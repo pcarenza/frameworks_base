@@ -124,7 +124,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 class ReceiverRestrictedContext extends ContextWrapper {
     ReceiverRestrictedContext(Context base) {
         super(base);
