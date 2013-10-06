@@ -2576,17 +2576,7 @@ public final class Settings {
          */
         public static final String POINTER_SPEED = "pointer_speed";
 
-<<<<<<< HEAD
         /**
-=======
-		/**
-         * Statusbar State
-    	 * @hide
-        */
-        public static final String EXPANDED_DESKTOP_STATE = "expanded_desktop_state";
-
-		/**
->>>>>>> 5a7ace4... Expanded desktop basic implementation
          * Style of Battery
          * 0 - Icon Only
          * 1 - Text Only
