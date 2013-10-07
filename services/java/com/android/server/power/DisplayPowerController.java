@@ -241,6 +241,8 @@ final class DisplayPowerController {
     private boolean mElectronBeamOnEnabled;
     private boolean mElectronBeamOffEnabled;
 
+    private int mElectronBeamMode;
+
     // The pending power request.
     // Initially null until the first call to requestPowerState.
     // Guarded by mLock.

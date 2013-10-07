@@ -473,6 +473,19 @@ public class NotificationManagerService extends INotificationManager.Stub
                                     }
                                 }
                             }
+			}
+		   }
+                } catch (FileNotFoundException e) {
+                    // No data yet
+                } catch (IOException e) {
+                    Log.wtf(TAG, "Unable to read blocked notifications database", e);
+                } catch (NumberFormatException e) {
+                    Log.wtf(TAG, "Unable to parse blocked notifications database", e);
+                } catch (XmlPullParserException e) {
+                    Log.wtf(TAG, "Unable to parse blocked notifications database", e);
+                } finally {
+                    IoUtils.closeQuietly(infile);
+	 	}
             }
         }
     }

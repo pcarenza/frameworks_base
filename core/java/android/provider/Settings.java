@@ -3924,12 +3924,6 @@ public final class Settings {
         public static final String QUICK_TOGGLE_VIBRATE = "quick_toggle_vibrate";
 
         /**
-         * Whether electronic beam animation is enabled or not
-         * @hide
-         */
-        public static final String SYSTEM_POWER_ENABLE_CRT_OFF = "system_power_enable_crt_off";
-
-        /**
          * Electronic beam animation mode
          * 0 = always horizontal, 1 = always vertical, 2 = dependent on orientation
          * @hide
