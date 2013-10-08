@@ -924,6 +924,7 @@ public class ActiveDisplayView extends FrameLayout {
                                 mOverflowNotifications.addView(iv, mOverflowLayoutParams);
                             }
                         }
+		    }
                     
                 } catch (RemoteException re) {
                 } catch (NullPointerException npe) {
