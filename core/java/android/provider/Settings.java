@@ -2807,6 +2807,12 @@ public final class Settings {
          */
         public static final String VIBRATE_NOTIF_EXPAND = "vibrate_notif_expand";
 
+       /**
+         * HALO enabled, should default to 0 (HALO is disabled)
+         * @hide
+         */
+        public static final String HALO_ENABLED = "halo_enabled";
+
         /**
          * Whether the volume keys wake the screen.
          * @hide
