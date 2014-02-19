@@ -3053,6 +3053,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.AOKP.getUriFor(
                     Settings.AOKP.TOGGLES_STYLE), false, this);
+                    
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_BATTERY_STYLE), false, this);
+
+            update();
         }
 
         @Override
