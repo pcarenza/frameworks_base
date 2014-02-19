@@ -353,11 +353,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     };
 
     private void updateBatteryIcons() {
-        if (mBattery != null && mCircleBattery != null) {
-            mBattery.updateSettings();
-            mCircleBattery.updateSettings();
-        }
+       if (mBattery != null && mCircleBattery != null) {
+           mBattery.updateSettings();
+           mCircleBattery.updateSettings();
+       }
     }
+
 
     private int mInteractingWindows;
     private boolean mAutohideSuspended;
@@ -2967,78 +2968,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     }
 
-    class SettingsObserver extends ContentObserver {
-        SettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-            void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.NOTIFICATION_CLOCK[shortClick]), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.NOTIFICATION_CLOCK[longClick]), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.NOTIFICATION_CLOCK[doubleClick]), false, this);
-            resolver.registerContentObserver(Settings.AOKP.getUriFor(
-                    Settings.AOKP.TOGGLES_STYLE), false, this);
-
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_CUSTOM_HEADER), false, this);
-
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_BATTERY_STYLE), false, this);
-
-            update();
-
-        }
-
-         @Override
-        public void onChange(boolean selfChange, Uri uri) {
-            updateSettings();
-            updateBatteryIcons();
-            update();
-            if(uri != null && uri.equals(Settings.AOKP.getUriFor(Settings.AOKP.TOGGLES_STYLE))) {
-                recreateStatusBar();
-            }
-        }
-
-        public void update() {
-            final ContentResolver resolver = mContext.getContentResolver();
-
-            updateCustomHeaderStatus();
-
-        }
-
-    }
-    public void updateSettings() {
-        ContentResolver cr = mContext.getContentResolver();
-
-        mToggleStyle = Settings.System.getInt(cr, Settings.AOKP.TOGGLES_STYLE,ToggleManager.STYLE_TILE);
-
-        mClockActions[shortClick] = Settings.System.getString(cr,
-                Settings.System.NOTIFICATION_CLOCK[shortClick]);
-
-        mClockActions[longClick] = Settings.System.getString(cr,
-                Settings.System.NOTIFICATION_CLOCK[longClick]);
-
-        mClockActions[doubleClick] = Settings.System.getString(cr,
-                Settings.System.NOTIFICATION_CLOCK[doubleClick]);
-
-        if (mClockActions[shortClick]  == null ||mClockActions[shortClick].equals("")) {
-            mClockActions[shortClick] = "**clockoptions**";
-        }
-        if (mClockActions[longClick]  == null || mClockActions[longClick].equals("")) {
-            mClockActions[longClick] = "**null**";
-                }
-        if (mClockActions[doubleClick] == null || mClockActions[doubleClick].equals("") || mClockActions[doubleClick].equals("**null**")) {
-            mClockActions[doubleClick] = "**null**";
-            mClockDoubleClicked = false;
-                } else {
-            mClockDoubleClicked = true;
-        }
-    }
-
     @Override
     public void destroy() {
         super.destroy();
@@ -3134,13 +3063,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         @Override
         public void onChange(boolean selfChange, Uri uri) {
             updateSettings();
+            updateBatteryIcons();
             if(uri != null && uri.equals(Settings.AOKP.getUriFor(Settings.AOKP.TOGGLES_STYLE))) {
                 recreateStatusBar();
             }
         }
     }
 
-    private void updateSettings() {
+    public void updateSettings() {
         ContentResolver cr = mContext.getContentResolver();
         mToggleStyle = Settings.System.getInt(cr, Settings.AOKP.TOGGLES_STYLE,ToggleManager.STYLE_TILE);
         if(mToggleManager != null) {
