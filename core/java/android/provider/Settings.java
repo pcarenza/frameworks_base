@@ -2420,8 +2420,8 @@ public final class Settings {
          * @hide
          */
         public static final String POINTER_SPEED = "pointer_speed";
-
-        /**
+        
+         /**
          * I am the lolrus.
          * <p>
          * Nonzero values indicate that the user has a bukkit.
@@ -2429,6 +2429,13 @@ public final class Settings {
          * @hide
          */
         public static final String EGG_MODE = "egg_mode";
+        
+        /**
+         * Setting to show the battery percentage text
+         * @hide
+         */
+        public static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
+       
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
