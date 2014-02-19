@@ -3056,8 +3056,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_BATTERY_STYLE), false, this);
-
-            update();
         }
 
         @Override
