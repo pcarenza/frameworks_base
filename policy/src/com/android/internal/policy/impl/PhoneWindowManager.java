@@ -676,9 +676,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     Settings.AOKP.DOUBLE_TAP_VOLUME_KEYS), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.AOKP.getUriFor(
-                    Settings.AOKP.ENABLE_NAVIGATION_BAR), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.AOKP.getUriFor(
                     Settings.AOKP.NAVIGATION_BAR_HEIGHT), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.AOKP.getUriFor(
@@ -686,12 +683,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.AOKP.getUriFor(
                     Settings.AOKP.NAVIGATION_BAR_WIDTH), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.ACCELEROMETER_ROTATION_ANGLES), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.NAVBAR_LEFT_IN_LANDSCAPE), false, this,
                     UserHandle.USER_ALL);
 
             updateSettings();
