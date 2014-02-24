@@ -677,6 +677,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.AOKP.getUriFor(
                     Settings.AOKP.ENABLE_NAVIGATION_BAR), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
                     Settings.AOKP.NAVIGATION_BAR_HEIGHT), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.AOKP.getUriFor(
